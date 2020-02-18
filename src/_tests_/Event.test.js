@@ -5,7 +5,53 @@ import Event from '../Event';
 describe('<Event /> component', () => {
   let EventWrapper;
   beforeAll(() => {
-    EventWrapper = shallow(<Event />);
+    EventWrapper = shallow(
+      <Event event={
+        {
+          created: 1578410603000,
+          duration: 7200000,
+          id: '267719029',
+          name: 'YSP KW: Starting in Sales ',
+          date_in_series_pattern: false,
+          status: 'upcoming',
+          time: 1582761600000,
+          local_date: '2020-02-26',
+          local_time: '19:00',
+          updated: 1579558019000,
+          utc_offset: -18000000,
+          waitlist_count: 0,
+          yes_rsvp_count: 49,
+          venue: {
+            id: 26093718,
+            name: 'Communitech',
+            lat: 43.451377868652344,
+            lon: -80.49877166748047,
+            repinned: true,
+            address_1: '151 Charles St W #100',
+            city: 'Kitchener',
+            country: 'ca',
+            localized_country_name: 'Canada',
+            zip: 'N2G 1H6',
+            state: 'ON'
+          },
+          group: {
+            created: 1566325014000,
+            name: 'Young Sales Professionals KW',
+            id: 32638497,
+            join_mode: 'open',
+            lat: 43.439998626708984,
+            lon: -80.43000030517578,
+            urlname: 'YSPKWC',
+            who: 'Members',
+            localized_location: 'Kitchener, ON',
+            state: 'ON',
+            country: 'ca',
+            region: 'en_US',
+            timezone: 'Canada/Eastern'
+          },
+        }
+      } />
+    );
   });
 
   test('render event name', () => {
