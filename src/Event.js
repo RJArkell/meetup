@@ -19,6 +19,11 @@ class Event extends Component {
         <div className="eventDate">{event.local_date}</div>
         {event.group && event.group.name && <div className="groupName">{event.group.name}</div>}
         <button className="details" onClick={this.handleDetails}>Details</button>
+        {this.state.showDetails &&
+          <div className="eventDetails">
+            <div className="eventDescription">{event.description}</div>
+          </div>
+        }
       </div>
     );
   }
