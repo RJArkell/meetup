@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { getSuggestions } from './api';
-import { InfoAlert } from './Alert';
+import { InfoAlert, OfflineAlert } from './Alert';
 
 class CitySearch extends Component {
   state = {
     query: '',
-    suggestions: []
+    suggestions: [],
+    offlineText: ''
   }
 
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({ query: value });
-
+    if (!navigator.onLine) {
+      this.setState({ offlineText: 'App is offline, this is a cached list. Reconnent to internet to refresh.' });
+    } else {
+      this.setState({ offlineText: '' });
+    }
     getSuggestions(value).then(suggestions => {
       this.setState({ suggestions });
-
       if (value && suggestions.length === 0) {
         this.setState({
           infoText: 'We can not find the city you are looking for. Please try another city',
@@ -51,6 +55,7 @@ class CitySearch extends Component {
             </li>
           )}
         </ul>
+        <OfflineAlert text={this.state.offlineText} />
       </div>
     );
   }

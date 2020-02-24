@@ -7,6 +7,6 @@ import * as atatus from 'atatus-js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-serviceWorker.unregister();
+serviceWorker.register();
 
 atatus.config('bf327b5e36ae467080d975f8266345d4').install();
