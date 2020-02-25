@@ -12,8 +12,8 @@ class CitySearch extends Component {
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({ query: value });
-    if (!navigator.onLine) {
-      this.setState({ offlineText: 'App is offline, this is a cached list. Reconnent to internet to refresh.' });
+    if (navigator.onLine === false) {
+      this.setState({ offlineText: 'App is offline, this is a cached list. Reconnect to internet to refresh.' });
     } else {
       this.setState({ offlineText: '' });
     }

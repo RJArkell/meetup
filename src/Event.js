@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { ResponsiveContainer, PieChart, Pie, Legend, Tooltip, Cell, Line } from "recharts";
 
 class Event extends Component {
   state = {
     showDetails: false
   }
+
   handleDetails = () => {
     if (!this.state.showDetails) {
       this.setState({ showDetails: true });
@@ -11,8 +13,22 @@ class Event extends Component {
       this.setState({ showDetails: false });
     }
   }
+
+  getEventData = () => {
+    const { event } = this.props;
+    const spotsTaken = event.yes_rsvp_count;
+    const spotsFree = event.rsvp_limit - spotsTaken;
+    return (
+      [
+        { name: "Attending", value: spotsTaken },
+        { name: "Spots Open", value: spotsFree }
+      ]
+    )
+  }
+
   render() {
     const event = this.props.event;
+    let colors = ["#e34542", "#43e06d"]
     return (
       <div className="Event">
         <div className="eventName">{event.name}</div>
@@ -22,6 +38,24 @@ class Event extends Component {
         {this.state.showDetails &&
           <div className="eventDetails">
             <div className="eventDescription">{event.description}</div>
+            {event.rsvp_limit ? (
+              <ResponsiveContainer height={250}>
+                <PieChart>
+                  <Pie isAnimationActive={false} data={this.getEventData()} dataKey="value" cx="50%" cy="50%" outerRadius={80} label>
+                    {
+                      this.getEventData().map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={colors[index]} />
+                      ))
+                    }
+                  </Pie>
+                  <Tooltip />
+                  <Legend verticalAlign="top" height={30}>
+                    <Line name="Attending" type="monotone" dataKey="spotsTaken" stroke="#8884d8" />
+                    <Line name="Spots Open" type="monotone" dataKey="spotsFree" stroke="#82ca9d" />
+                  </Legend>
+                </PieChart>
+              </ResponsiveContainer>
+            ) : null}
           </div>
         }
       </div>
