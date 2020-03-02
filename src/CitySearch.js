@@ -41,6 +41,7 @@ class CitySearch extends Component {
       <div className="CitySearch">
         <InfoAlert text={this.state.infoText} />
         <input
+          placeholder="Enter city"
           type="text"
           className="city"
           value={this.state.query}

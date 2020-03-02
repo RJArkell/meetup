@@ -26,6 +26,8 @@ class Event extends Component {
     )
   }
 
+
+
   render() {
     const event = this.props.event;
     let colors = ["#e34542", "#43e06d"]
@@ -37,7 +39,7 @@ class Event extends Component {
         <button className="details" onClick={this.handleDetails}>Details</button>
         {this.state.showDetails &&
           <div className="eventDetails">
-            <div className="eventDescription">{event.description}</div>
+            <div className="eventDescription" dangerouslySetInnerHTML={{ __html: event.description }} />
             {event.rsvp_limit ? (
               <ResponsiveContainer height={250}>
                 <PieChart>

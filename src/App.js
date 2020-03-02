@@ -65,16 +65,18 @@ class App extends Component {
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
-        <ResponsiveContainer height={400}>
-          <ScatterChart
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" type='category' name="date" />
-            <YAxis allowDecimals={false} dataKey="number" type='number' name="Number of Events" />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
+        <div>
+          <ResponsiveContainer height={400}>
+            <ScatterChart
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" type='category' name="date" />
+              <YAxis allowDecimals={false} dataKey="number" type='number' name="Number of Events" />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} />
       </div>
     );
